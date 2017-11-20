@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
     [SerializeField] private float speed = 5.0f;
+    [SerializeField] private GameObject laserPrefab;
+    [SerializeField] private float fireRate = 0.25f;
+
+    private float nextFireTime = 0.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -13,6 +17,7 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         Movement();
+        LaserSpawning();
     }
 
     private void Movement() {
@@ -34,6 +39,13 @@ public class Player : MonoBehaviour {
         }
         else if (transform.position.x < -9.5f) {
             transform.position = new Vector3(9.5f, transform.position.y, 0);
+        }
+    }
+
+    private void LaserSpawning() {
+        if (Input.GetKeyDown(KeyCode.Space) && Time.time > nextFireTime) {
+            nextFireTime = Time.time + fireRate;
+            Instantiate(laserPrefab, transform.position + new Vector3(0, 0.7f, 0), Quaternion.identity);
         }
     }
 }
