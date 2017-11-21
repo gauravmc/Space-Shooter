@@ -43,7 +43,9 @@ public class Player : MonoBehaviour {
     }
 
     private void Shooting() {
-        if (Input.GetKeyDown(KeyCode.Space) && Time.time > nextFireTime) {
+        bool shootKeyPressed = Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0);
+
+        if (shootKeyPressed && Time.time > nextFireTime) {
             nextFireTime = Time.time + fireRate;
             Instantiate(laserPrefab, transform.position + new Vector3(0, 0.7f, 0), Quaternion.identity);
         }
