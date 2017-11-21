@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
+    public bool canTripleShot = false;
+
     [SerializeField] private float speed = 5.0f;
     [SerializeField] private GameObject laserPrefab;
+    [SerializeField] private GameObject tripleLaserPrefab;
     [SerializeField] private float fireRate = 0.25f;
 
     private float nextFireTime = 0.0f;
@@ -47,7 +50,26 @@ public class Player : MonoBehaviour {
 
         if (shootKeyPressed && Time.time > nextFireTime) {
             nextFireTime = Time.time + fireRate;
-            Instantiate(laserPrefab, transform.position + new Vector3(0, 0.7f, 0), Quaternion.identity);
+
+
+            if (canTripleShot)
+            {
+                Instantiate(tripleLaserPrefab, transform.position, Quaternion.identity);
+            } else
+            {
+                Instantiate(laserPrefab, transform.position + new Vector3(0, 0.7f, 0), Quaternion.identity);
+            }
         }
+    }
+
+    public void ActivateTripleShot() {
+        canTripleShot = true;
+
+        StartCoroutine(EnableTripleShotPowerDown());
+    }
+
+    private IEnumerator EnableTripleShotPowerDown() {
+        yield return new WaitForSeconds(3);
+        canTripleShot = false;
     }
 }
