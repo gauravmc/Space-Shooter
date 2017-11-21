@@ -7,11 +7,13 @@ public class Player : MonoBehaviour {
     [SerializeField] private GameObject laserPrefab;
     [SerializeField] private GameObject tripleLaserPrefab;
     [SerializeField] private GameObject explosionPrefab;
+    [SerializeField] private GameObject shieldObject;
     [SerializeField] private float fireRate = 0.25f;
 
     private float nextFireTime = 0.0f;
     private bool canTripleShot = false;
-    private int livesLeft = 0;
+    private bool shiledIsActive = false;
+    private int livesLeft = 1;
 
     // Use this for initialization
     void Start () {
@@ -65,10 +67,14 @@ public class Player : MonoBehaviour {
     }
 
     public void CauseDamage() {
-        if (livesLeft == 0) {
-            Destroy(this.gameObject);
+        if (shiledIsActive) {
+            DeactivateShield();
         } else {
-            livesLeft -= 1;
+            if (livesLeft == 0) {
+                Destroy(this.gameObject);
+            } else {
+                livesLeft -= 1;
+            }
         }
     }
 
@@ -91,6 +97,16 @@ public class Player : MonoBehaviour {
     private IEnumerator EnableSpeedBoostPowerDown(float originalSpeed) {
         yield return new WaitForSeconds(3);
         speed = originalSpeed;
+    }
+
+    public void ActivateShield() {
+        shiledIsActive = true;
+        shieldObject.SetActive(true);
+    }
+
+    public void DeactivateShield() {
+        shiledIsActive = false;
+        shieldObject.SetActive(false);
     }
 
     private void OnDestroy() {
