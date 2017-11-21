@@ -6,11 +6,12 @@ public class Player : MonoBehaviour {
     [SerializeField] private float speed = 5.0f;
     [SerializeField] private GameObject laserPrefab;
     [SerializeField] private GameObject tripleLaserPrefab;
+    [SerializeField] private GameObject explosionPrefab;
     [SerializeField] private float fireRate = 0.25f;
 
     private float nextFireTime = 0.0f;
     private bool canTripleShot = false;
-    private int livesLeft = 3;
+    private int livesLeft = 0;
 
     // Use this for initialization
     void Start () {
@@ -90,5 +91,9 @@ public class Player : MonoBehaviour {
     private IEnumerator EnableSpeedBoostPowerDown(float originalSpeed) {
         yield return new WaitForSeconds(3);
         speed = originalSpeed;
+    }
+
+    private void OnDestroy() {
+        Instantiate(explosionPrefab, transform.position, Quaternion.identity);
     }
 }

@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy_Explosion : MonoBehaviour {
+public class Explosion : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        StartCoroutine(DestroyExplosionObject());
+        StartCoroutine(DestroySelf());
 	}
 	
-    private IEnumerator DestroyExplosionObject() {
+    private IEnumerator DestroySelf() {
         yield return new WaitForSeconds(3);
         Destroy(this.gameObject);
     }

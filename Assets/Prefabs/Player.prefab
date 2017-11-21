@@ -104,6 +104,8 @@ MonoBehaviour:
     type: 2}
   tripleLaserPrefab: {fileID: 1672259290532668, guid: aa209f4615efd8447b73fc6bdedd7e3f,
     type: 2}
+  explosionPrefab: {fileID: 1698448687459454, guid: 51e425e41c3ec45029ee2808cf5c409b,
+    type: 2}
   fireRate: 0.25
 --- !u!212 &212221466235900600
 SpriteRenderer:
