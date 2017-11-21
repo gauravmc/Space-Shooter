@@ -17,7 +17,7 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         Movement();
-        LaserSpawning();
+        Shooting();
     }
 
     private void Movement() {
@@ -42,7 +42,7 @@ public class Player : MonoBehaviour {
         }
     }
 
-    private void LaserSpawning() {
+    private void Shooting() {
         if (Input.GetKeyDown(KeyCode.Space) && Time.time > nextFireTime) {
             nextFireTime = Time.time + fireRate;
             Instantiate(laserPrefab, transform.position + new Vector3(0, 0.7f, 0), Quaternion.identity);
