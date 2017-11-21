@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
-    public bool canTripleShot = false;
-
     [SerializeField] private float speed = 5.0f;
     [SerializeField] private GameObject laserPrefab;
     [SerializeField] private GameObject tripleLaserPrefab;
     [SerializeField] private float fireRate = 0.25f;
 
     private float nextFireTime = 0.0f;
+    private bool canTripleShot = false;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         transform.position = new Vector3(0, -3, 0);
 	}
 	
@@ -64,12 +63,22 @@ public class Player : MonoBehaviour {
 
     public void ActivateTripleShot() {
         canTripleShot = true;
-
         StartCoroutine(EnableTripleShotPowerDown());
     }
 
     private IEnumerator EnableTripleShotPowerDown() {
         yield return new WaitForSeconds(3);
         canTripleShot = false;
+    }
+
+    public void ActivateSpeedBoost() {
+        float originalSpeed = speed;
+        speed = speed * 1.5f;
+        StartCoroutine(EnableSpeedBoostPowerDown(originalSpeed));
+    }
+
+    private IEnumerator EnableSpeedBoostPowerDown(float originalSpeed) {
+        yield return new WaitForSeconds(3);
+        speed = originalSpeed;
     }
 }

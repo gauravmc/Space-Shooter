@@ -2,14 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Powerup : MonoBehaviour {
+public abstract class Powerup : MonoBehaviour {
     [SerializeField] private float speed = 3.0f;
-
-    // Use this for initialization
-    void Start()
-    {
-
-    }
 
     // Update is called once per frame
     void Update()
@@ -24,10 +18,12 @@ public class Powerup : MonoBehaviour {
             Player player = collision.GetComponent<Player>();
 
             if (player != null) {
-                player.ActivateTripleShot();
+                ActivatePowerOnPlayer(player);
 
                 Destroy(this.gameObject);
             }
         }
     }
+
+    abstract public void ActivatePowerOnPlayer(Player player);
 }
