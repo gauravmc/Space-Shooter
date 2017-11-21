@@ -10,6 +10,7 @@ public class Player : MonoBehaviour {
 
     private float nextFireTime = 0.0f;
     private bool canTripleShot = false;
+    private int livesLeft = 3;
 
     // Use this for initialization
     void Start () {
@@ -49,15 +50,24 @@ public class Player : MonoBehaviour {
 
         if (shootKeyPressed && Time.time > nextFireTime) {
             nextFireTime = Time.time + fireRate;
+            ShootLasers();
+        }
+    }
 
+    public void ShootLasers() {
+        if (canTripleShot) {
+            Instantiate(tripleLaserPrefab, transform.position, Quaternion.identity);
+        }
+        else {
+            Instantiate(laserPrefab, transform.position + new Vector3(0, 0.7f, 0), Quaternion.identity);
+        }
+    }
 
-            if (canTripleShot)
-            {
-                Instantiate(tripleLaserPrefab, transform.position, Quaternion.identity);
-            } else
-            {
-                Instantiate(laserPrefab, transform.position + new Vector3(0, 0.7f, 0), Quaternion.identity);
-            }
+    public void CauseDamage() {
+        if (livesLeft == 0) {
+            Destroy(this.gameObject);
+        } else {
+            livesLeft -= 1;
         }
     }
 
