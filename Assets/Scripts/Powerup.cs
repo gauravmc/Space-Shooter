@@ -7,6 +7,7 @@ public abstract class Powerup : MonoBehaviour {
     private const float maxX = 7.0f;
 
     [SerializeField] private float speed = 3.0f;
+    [SerializeField] private AudioClip powerupClip;
 
     void Start() {
         RandomizePosition();
@@ -29,6 +30,7 @@ public abstract class Powerup : MonoBehaviour {
 
             if (player != null) {
                 ActivatePowerOnPlayer(player);
+                AudioSource.PlayClipAtPoint(powerupClip, Camera.main.transform.position);
 
                 Destroy(this.gameObject);
             }
