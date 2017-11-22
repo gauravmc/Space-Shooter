@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
     [SerializeField] private GameObject playerShip;
 
-    private bool gameOver;
+    public bool gameOver = true;
     private UIManager uiManager;
     private SpawnManager spawnManager;
 
@@ -14,7 +14,6 @@ public class GameManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        gameOver = true;
         uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         spawnManager = GameObject.Find("Spawner").GetComponent<SpawnManager>();
     }
@@ -51,7 +50,6 @@ public class GameManager : MonoBehaviour {
 
     private void StartGame() {
         uiManager.HideMainMenu();
-        uiManager.ResetUI();
         gameOver = false;
         SpawnPlayer();
         spawnManager.SpawnAll();

@@ -11,11 +11,6 @@ public class UIManager : MonoBehaviour {
     [SerializeField] private Text scoreText;
     [SerializeField] private GameObject mainMenu;
 
-    public void ResetUI() {
-        ShowScore(0);
-        UpdatePlayerLives(allLivesCode);
-    }
-
     public void UpdatePlayerLives(int livesLeft) {
         playerLives.sprite = livesSprites[livesLeft];
     }
@@ -30,5 +25,11 @@ public class UIManager : MonoBehaviour {
 
     public void HideMainMenu() {
         mainMenu.SetActive(false);
+        ResetUI();
+    }
+
+    private void ResetUI() {
+        ShowScore(0);
+        UpdatePlayerLives(allLivesCode);
     }
 }

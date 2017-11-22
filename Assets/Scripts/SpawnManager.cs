@@ -8,28 +8,28 @@ public class SpawnManager : MonoBehaviour {
 
     private GameManager gameManager;
 
-    private GameObject initialEnemy;
-    private GameObject initialPowerup;
+    private GameObject temporaryEnemy;
+    private GameObject temporaryPowerup;
 
 
     void Start() {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
-        initialEnemy = LaunchEnemyShip();
-        initialPowerup = SendPowerups();
+        if (gameManager.gameOver) {
+            temporaryEnemy = LaunchEnemyShip();
+            temporaryPowerup = SendPowerups();            
+        }
     }
 
     void Update() {
-        if (initialPowerup == null) {
-            initialPowerup = SendPowerups();
+        if (gameManager.gameOver && temporaryPowerup == null) {
+            temporaryPowerup = SendPowerups();
         }
     }
 
     public void SpawnAll() {
-        initialEnemy.transform.position = new Vector3(0, 7.0f, 0);
-        Destroy(initialEnemy.gameObject);
-        initialPowerup.transform.position = new Vector3(0, 7.0f, 0);
-        Destroy(initialPowerup.gameObject);
+        Destroy(temporaryEnemy.gameObject);
+        Destroy(temporaryPowerup.gameObject);
 
         InvokeRepeating("LaunchEnemyShip", 0.0f, 5.0f);
         InvokeRepeating("SendPowerups", 5.0f, 10.0f);
