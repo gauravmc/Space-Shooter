@@ -13,15 +13,17 @@ public class Player : MonoBehaviour {
     private float nextFireTime = 0.0f;
     private bool canTripleShot = false;
     private bool shiledIsActive = false;
-    private int livesLeft = 1;
+    private int livesLeft = 3;
+    private UIManager uiManager;
 
     // Use this for initialization
     void Start () {
-        transform.position = new Vector3(0, -3, 0);
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+        uiManager.UpdatePlayerLives(livesLeft);
+    }
+
+    // Update is called once per frame
+    void Update () {
         Movement();
         Shooting();
     }
@@ -71,9 +73,10 @@ public class Player : MonoBehaviour {
             DeactivateShield();
         } else {
             if (livesLeft == 0) {
-                Destroy(this.gameObject);
+                Die();
             } else {
                 livesLeft -= 1;
+                uiManager.UpdatePlayerLives(livesLeft);
             }
         }
     }
@@ -109,7 +112,14 @@ public class Player : MonoBehaviour {
         shieldObject.SetActive(false);
     }
 
-    private void OnDestroy() {
+    private void Die() {
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+        NotifySpawnManagerAboutDeath();
+        Destroy(this.gameObject);
+    }
+
+    private void NotifySpawnManagerAboutDeath() {
+        SpawnManager spawnManager = GameObject.Find("Spawner").GetComponent<SpawnManager>();
+        spawnManager.PlayerDeadSequence();
     }
 }

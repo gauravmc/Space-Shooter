@@ -20,9 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4076356729397102}
   - component: {fileID: 212933305456218034}
-  - component: {fileID: 114170170101134108}
   - component: {fileID: 61450542028478666}
   - component: {fileID: 50562308823977242}
+  - component: {fileID: 114170170101134108}
   m_Layer: 0
   m_Name: Right Laser
   m_TagString: Laser
@@ -39,9 +39,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4536769399113202}
   - component: {fileID: 212160793947230860}
-  - component: {fileID: 114812903870888762}
   - component: {fileID: 61313400032114520}
   - component: {fileID: 50333010717015366}
+  - component: {fileID: 114812903870888762}
   m_Layer: 0
   m_Name: Left Laser
   m_TagString: Laser
@@ -73,9 +73,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4742368378420788}
   - component: {fileID: 212277756321075610}
-  - component: {fileID: 114375388433748962}
   - component: {fileID: 61940388765078134}
   - component: {fileID: 50656255045383796}
+  - component: {fileID: 114375388433748962}
   m_Layer: 0
   m_Name: Center Laser
   m_TagString: Laser
@@ -91,7 +91,7 @@ Transform:
   m_GameObject: {fileID: 1011194945546650}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.55, y: -0.3, z: 0}
-  m_LocalScale: {x: 0.19999999, y: 0.19999999, z: 0.19999999}
+  m_LocalScale: {x: 0.15, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 4565927514755080}
   m_RootOrder: 2
@@ -104,7 +104,7 @@ Transform:
   m_GameObject: {fileID: 1195109470756402}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.55, y: -0.3, z: 0}
-  m_LocalScale: {x: 0.19999999, y: 0.19999999, z: 0.19999999}
+  m_LocalScale: {x: 0.15, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 4565927514755080}
   m_RootOrder: 1
@@ -133,7 +133,7 @@ Transform:
   m_GameObject: {fileID: 1949708171020640}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.7, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.15, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 4565927514755080}
   m_RootOrder: 0
@@ -221,7 +221,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 3}
+  m_Size: {x: 0.4, y: 2.8}
   m_EdgeRadius: 0
 --- !u!61 &61450542028478666
 BoxCollider2D:
@@ -246,7 +246,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 3}
+  m_Size: {x: 0.4, y: 2.8}
   m_EdgeRadius: 0
 --- !u!61 &61940388765078134
 BoxCollider2D:
@@ -271,7 +271,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 3}
+  m_Size: {x: 0.4, y: 2.8}
   m_EdgeRadius: 0
 --- !u!114 &114170170101134108
 MonoBehaviour:
