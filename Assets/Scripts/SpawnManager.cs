@@ -9,7 +9,7 @@ public class SpawnManager : MonoBehaviour {
     // Use this for initialization
     void Start() {
         InvokeRepeating("LaunchEnemyShip", 0.0f, 5.0f);
-        InvokeRepeating("SendPowerups", 5.0f, 5.0f);
+        InvokeRepeating("SendPowerups", 5.0f, 8.0f);
     }
 
     private void LaunchEnemyShip() {
