@@ -51,7 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b753b107600bb324183c81745fabc575, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerShip: {fileID: 1674699194017096, guid: 21fa7783213c876438c12631db617975, type: 2}
   enemyShip: {fileID: 1961966323510418, guid: 27c43035a2ed2bb4a8f265061a7813d8, type: 2}
   powerups:
   - {fileID: 1877040558860664, guid: fa877993af018d34aa7b57515ba74f84, type: 2}

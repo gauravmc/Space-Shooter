@@ -93,7 +93,7 @@ public class Player : MonoBehaviour {
 
     public void ActivateSpeedBoost() {
         float originalSpeed = speed;
-        speed = speed * 1.5f;
+        speed = speed * 2f;
         StartCoroutine(EnableSpeedBoostPowerDown(originalSpeed));
     }
 
@@ -114,12 +114,12 @@ public class Player : MonoBehaviour {
 
     private void Die() {
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-        NotifySpawnManagerAboutDeath();
+        NotifyGameManagerAboutDeath();
         Destroy(this.gameObject);
     }
 
-    private void NotifySpawnManagerAboutDeath() {
-        SpawnManager spawnManager = GameObject.Find("Spawner").GetComponent<SpawnManager>();
-        spawnManager.PlayerDeadSequence();
+    private void NotifyGameManagerAboutDeath() {
+        GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gameManager.PlayerDeadSequence();
     }
 }

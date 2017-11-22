@@ -6,11 +6,6 @@ public class Explosion : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        StartCoroutine(DestroySelf());
-	}
-	
-    private IEnumerator DestroySelf() {
-        yield return new WaitForSeconds(3);
-        Destroy(this.gameObject);
+        Destroy(this.gameObject, 3.0f);
     }
 }

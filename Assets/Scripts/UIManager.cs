@@ -9,7 +9,7 @@ public class UIManager : MonoBehaviour {
     [SerializeField] private Sprite[] livesSprites;
     [SerializeField] private Image playerLives;
     [SerializeField] private Text scoreText;
-    [SerializeField] private Image mainMenu;
+    [SerializeField] private GameObject mainMenu;
 
     private int playerScore;
 
@@ -28,11 +28,11 @@ public class UIManager : MonoBehaviour {
     }
 
     public void ShowMainMenu() {
-        mainMenu.gameObject.SetActive(true);
+        mainMenu.SetActive(true);
     }
 
     public void HideMainMenu() {
-        mainMenu.gameObject.SetActive(false);
+        mainMenu.SetActive(false);
     }
 
     private void ResetScore(int score) {
