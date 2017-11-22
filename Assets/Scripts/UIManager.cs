@@ -11,10 +11,8 @@ public class UIManager : MonoBehaviour {
     [SerializeField] private Text scoreText;
     [SerializeField] private GameObject mainMenu;
 
-    private int playerScore;
-
     public void ResetUI() {
-        ResetScore(0);
+        ShowScore(0);
         UpdatePlayerLives(allLivesCode);
     }
 
@@ -22,9 +20,8 @@ public class UIManager : MonoBehaviour {
         playerLives.sprite = livesSprites[livesLeft];
     }
 
-    public void UpdateScore() {
-        int newScore = playerScore += 10;
-        ResetScore(newScore);
+    public void ShowScore(int score) {
+        scoreText.text = "Score: " + score;
     }
 
     public void ShowMainMenu() {
@@ -33,10 +30,5 @@ public class UIManager : MonoBehaviour {
 
     public void HideMainMenu() {
         mainMenu.SetActive(false);
-    }
-
-    private void ResetScore(int score) {
-        playerScore = score;
-        scoreText.text = "Score: " + playerScore;
     }
 }

@@ -6,15 +6,15 @@ public class EnemyAI : MonoBehaviour {
     private const float minX = -7.0f;
     private const float maxX = 7.0f;
 
-    [SerializeField] private float speed = 5.0f;
+    [SerializeField] private float speed = 6.0f;
     [SerializeField] private GameObject explosionPrefab;
 
-    private UIManager uiManager;
+    private GameManager gameManager;
 
     // Use this for initialization
     void Start() {
         RandomizePosition();
-        uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -40,8 +40,8 @@ public class EnemyAI : MonoBehaviour {
                 Die();
             }
         } else if (collision.tag == "Laser") {
-            if (uiManager != null) {
-                uiManager.UpdateScore();
+            if (gameManager != null) {
+                gameManager.UpdateScore();
             }
 
             Destroy(collision.gameObject);
@@ -50,6 +50,7 @@ public class EnemyAI : MonoBehaviour {
     }
 
     private void Die() {
+        gameManager.DecrementEnemyCount();
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         Destroy(this.gameObject);
     }

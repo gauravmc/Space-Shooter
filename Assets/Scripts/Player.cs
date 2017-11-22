@@ -37,17 +37,8 @@ public class Player : MonoBehaviour {
 
     private void Movement() {
         float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
 
         transform.Translate(Vector3.right * speed * horizontalInput * Time.deltaTime);
-        transform.Translate(Vector3.up * speed * verticalInput * Time.deltaTime);
-
-        if (transform.position.y > 0) {
-            transform.position = new Vector3(transform.position.x, 0, 0);
-        }
-        else if (transform.position.y < -4.5f) {
-            transform.position = new Vector3(transform.position.x, -4.5f, 0);
-        }
 
         if (transform.position.x > 9.5f) {
             transform.position = new Vector3(-9.5f, transform.position.y, 0);
@@ -58,7 +49,7 @@ public class Player : MonoBehaviour {
     }
 
     private void Shooting() {
-        bool shootKeyPressed = Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0);
+        bool shootKeyPressed = Input.GetKeyDown(KeyCode.Space);
 
         if (shootKeyPressed && Time.time > nextFireTime) {
             nextFireTime = Time.time + fireRate;
@@ -142,6 +133,6 @@ public class Player : MonoBehaviour {
 
     private void NotifyGameManagerAboutDeath() {
         GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        gameManager.PlayerDeadSequence();
+        gameManager.GameOverSequence();
     }
 }

@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 4029956473118818}
   - component: {fileID: 212954553579718616}
   - component: {fileID: 95416725693437914}
-  - component: {fileID: 114191803680114090}
   - component: {fileID: 82955939057792968}
+  - component: {fileID: 114191803680114090}
   m_Layer: 0
   m_Name: Enemy_Explosion
   m_TagString: Untagged
@@ -110,7 +110,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:

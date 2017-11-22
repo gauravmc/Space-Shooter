@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 4862160050867408}
   - component: {fileID: 212534326955331870}
   - component: {fileID: 58819385116717604}
-  - component: {fileID: 114614954851698342}
   - component: {fileID: 95850210143922186}
+  - component: {fileID: 114614954851698342}
   m_Layer: 0
   m_Name: Speed_Boost_Powerup
   m_TagString: Untagged

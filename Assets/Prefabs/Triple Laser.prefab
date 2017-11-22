@@ -22,8 +22,8 @@ GameObject:
   - component: {fileID: 212933305456218034}
   - component: {fileID: 61450542028478666}
   - component: {fileID: 50562308823977242}
-  - component: {fileID: 114170170101134108}
   - component: {fileID: 82032551749308656}
+  - component: {fileID: 114170170101134108}
   m_Layer: 0
   m_Name: Right Laser
   m_TagString: Laser
@@ -76,8 +76,8 @@ GameObject:
   - component: {fileID: 212277756321075610}
   - component: {fileID: 61940388765078134}
   - component: {fileID: 50656255045383796}
-  - component: {fileID: 114375388433748962}
   - component: {fileID: 82247760023116532}
+  - component: {fileID: 114375388433748962}
   m_Layer: 0
   m_Name: Center Laser
   m_TagString: Laser
