@@ -15,11 +15,18 @@ public class Player : MonoBehaviour {
     private bool shiledIsActive = false;
     private int livesLeft = 3;
     private UIManager uiManager;
+    private List<GameObject> playerInjuries = new List<GameObject>();
 
     // Use this for initialization
     void Start () {
         uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         uiManager.UpdatePlayerLives(livesLeft);
+
+        foreach (Transform child in transform) {
+            if (child.tag == "PlayerInjury") {
+                playerInjuries.Add(child.gameObject);
+            }
+        }
     }
 
     // Update is called once per frame
@@ -76,8 +83,23 @@ public class Player : MonoBehaviour {
                 Die();
             } else {
                 livesLeft -= 1;
+                ShowInjury();
                 uiManager.UpdatePlayerLives(livesLeft);
             }
+        }
+    }
+
+    private void ShowInjury() {
+        if (livesLeft < 0) {
+            return; 
+        }
+
+        int randIndex = Random.Range(0, playerInjuries.Count);
+        GameObject injury = playerInjuries[randIndex];
+        if (!injury.activeSelf) {
+            injury.SetActive(true);
+        } else {
+            ShowInjury();
         }
     }
 
