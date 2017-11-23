@@ -27,9 +27,9 @@ public class GameManager : MonoBehaviour {
     }
 
     private void Update() {
-        bool gameStartPressed = Input.GetKeyDown(KeyCode.Space);
+        bool spacePressed = Input.GetKeyDown(KeyCode.Space);
 
-        if (gameOver && gameStartPressed) {
+        if (gameOver && (spacePressed || Input.touchCount > 0)) {
             StartGame();
         }
     }

@@ -32,15 +32,17 @@ public class Player : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update() {
         Movement();
         Shooting();
     }
 
     private void Movement() {
-        float horizontalInput = Input.GetAxis("Horizontal");
-
-        transform.Translate(Vector3.right * speed * horizontalInput * Time.deltaTime);
+        if (PlayingOnIPhone()) {
+            IPhoneMovement();
+        } else {
+            DesktopMovement();
+        }
 
         if (transform.position.x > 9.5f) {
             transform.position = new Vector3(-9.5f, transform.position.y, 0);
@@ -50,10 +52,26 @@ public class Player : MonoBehaviour {
         }
     }
 
-    private void Shooting() {
-        bool shootKeyPressed = Input.GetKeyDown(KeyCode.Space);
+    private void IPhoneMovement() {
+        transform.Translate(Vector3.right * speed * 2.0f * Input.acceleration.x * Time.deltaTime);
+    }
 
-        if (shootKeyPressed && Time.time > nextFireTime) {
+    private void DesktopMovement() {
+        float horizontalInput = Input.GetAxis("Horizontal");
+
+        transform.Translate(Vector3.right * speed * horizontalInput * Time.deltaTime);
+    }
+
+    private void Shooting() {
+        bool shootPressed = false;
+
+        if (PlayingOnIPhone()) {
+            shootPressed = Input.touchCount > 0;
+        } else {
+            shootPressed = Input.GetKeyDown(KeyCode.Space);
+        }
+
+        if (shootPressed && Time.time > nextFireTime) {
             nextFireTime = Time.time + fireRate;
             ShootLasers();
         }
@@ -131,5 +149,10 @@ public class Player : MonoBehaviour {
         gameManager.PlayerDied();
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         Destroy(this.gameObject);
+    }
+
+    private bool PlayingOnIPhone() {
+        return (Application.platform == RuntimePlatform.IPhonePlayer) ||
+            (Application.platform == RuntimePlatform.OSXEditor);
     }
 }
