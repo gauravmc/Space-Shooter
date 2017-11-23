@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
-    public const int maximumEnemies = 5;
+    public const int maximumEnemies = 20;
 
     [SerializeField] private GameObject playerShip;
     [SerializeField] private GameObject fireworks;

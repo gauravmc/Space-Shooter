@@ -53,7 +53,7 @@ public class Player : MonoBehaviour {
     }
 
     private void IPhoneMovement() {
-        transform.Translate(Vector3.right * speed * 2.0f * Input.acceleration.x * Time.deltaTime);
+        transform.Translate(Vector3.right * speed * 3.0f * Input.acceleration.x * Time.deltaTime);
     }
 
     private void DesktopMovement() {
