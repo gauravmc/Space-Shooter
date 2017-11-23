@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private GameObject fireworks;
     [SerializeField] private AudioClip applauseClip;
     [SerializeField] private AudioClip fireworksClip;
+    [SerializeField] private GameObject fireworksObject;
 
     public bool gameOver = true;
     public int totalEnemiesLeft;
@@ -17,10 +18,12 @@ public class GameManager : MonoBehaviour {
     private SpawnManager spawnManager;
     private GameObject playerShipClone;
     private AudioSource mainGameMusic;
+    private FireworksManager fireworksManager;
 
     void Start() {
         uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         spawnManager = GameObject.Find("Spawner").GetComponent<SpawnManager>();
+        fireworksManager = fireworksObject.GetComponent<FireworksManager>();
         mainGameMusic = Camera.main.transform.GetComponent<AudioSource>();
 
         ResetScore();
@@ -66,10 +69,10 @@ public class GameManager : MonoBehaviour {
         }
 
         Destroy(playerShipClone.gameObject);
-        GameObject fireworksClone = Instantiate(fireworks, Vector3.zero, Quaternion.identity);
+        fireworksManager.ActivateFireworks();
         Invoke("PlayWinSound", 0.1f);
 
-        StartCoroutine(RestartGameMenu(fireworksClone));
+        StartCoroutine(RestartGameMenu());
     }
 
     private void PlayWinSound() {
@@ -86,10 +89,10 @@ public class GameManager : MonoBehaviour {
         spawnManager.GameStarted();
     }
 
-    private IEnumerator RestartGameMenu(GameObject fireworksClone) {
+    private IEnumerator RestartGameMenu() {
         yield return new WaitForSeconds(10);
 
-        Destroy(fireworksClone.gameObject);
+        fireworksManager.DeactivateFireworks();
         GameOverSequence();
     }
 
