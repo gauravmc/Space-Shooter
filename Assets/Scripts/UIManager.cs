@@ -11,25 +11,36 @@ public class UIManager : MonoBehaviour {
     [SerializeField] private Text scoreText;
     [SerializeField] private GameObject mainMenu;
 
+    private GameObject[] instructionObjects;
+
+    void Start() {
+        instructionObjects = GameObject.FindGameObjectsWithTag("Instruction");
+    }
+
     public void UpdatePlayerLives(int livesLeft) {
         playerLives.sprite = livesSprites[livesLeft];
     }
 
     public void ShowScore(int score) {
-        scoreText.text = "Score: " + score;
+        scoreText.text = "Enemies left: " + score;
     }
 
     public void ShowMainMenu() {
         mainMenu.SetActive(true);
     }
 
-    public void HideMainMenu() {
+    public void ResetUI(int score) {
         mainMenu.SetActive(false);
-        ResetUI();
+        HideInstrcutions();
+        ShowScore(score);
+        UpdatePlayerLives(allLivesCode);
     }
 
-    private void ResetUI() {
-        ShowScore(0);
-        UpdatePlayerLives(allLivesCode);
+    private void HideInstrcutions() {
+        foreach (GameObject instruction in instructionObjects) {
+            if (instruction.activeSelf) {
+                instruction.SetActive(false);
+            }
+        }
     }
 }

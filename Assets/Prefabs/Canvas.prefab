@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 224449376330688344}
   - component: {fileID: 222448738918582522}
   - component: {fileID: 114157262861621494}
+  - component: {fileID: 114651869083496218}
   m_Layer: 5
   m_Name: Begin Message
   m_TagString: Untagged
@@ -270,7 +271,18 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Score: 0'
+  m_Text: 'Enemies left: 150'
+--- !u!114 &114651869083496218
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1111028549069180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8a99589bf71b4c12bfeb1409bd4fd43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114752984765266542
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -560,7 +572,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1479342964109340}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -23, y: 25, z: 0}
+  m_LocalPosition: {x: -42, y: 24, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224501347811737778}
@@ -568,6 +580,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -73, y: -25}
+  m_AnchoredPosition: {x: -92, y: -26}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}

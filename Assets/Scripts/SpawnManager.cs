@@ -11,40 +11,47 @@ public class SpawnManager : MonoBehaviour {
     private GameObject temporaryEnemy;
     private GameObject temporaryPowerup;
 
-
     void Start() {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-
-        if (gameManager.gameOver) {
-            temporaryEnemy = LaunchEnemyShip();
-            temporaryPowerup = SendPowerups();            
-        }
     }
 
     void Update() {
-        if (gameManager.gameOver && temporaryPowerup == null) {
-            temporaryPowerup = SendPowerups();
+        if (gameManager.gameOver) {
+            if (temporaryPowerup == null) {
+                temporaryPowerup = CreateNewPowerup();
+            }
+            if (temporaryEnemy == null) {
+                temporaryEnemy = CreateNewEnemy();
+            }
         }
     }
 
-    public void SpawnAll() {
+    public void GameStarted() {
         Destroy(temporaryEnemy.gameObject);
         Destroy(temporaryPowerup.gameObject);
 
-        InvokeRepeating("LaunchEnemyShip", 0.0f, 5.0f);
+        InvokeRepeating("LaunchEnemyShips", 0.0f, 5.0f);
         InvokeRepeating("SendPowerups", 5.0f, 10.0f);
     }
 
-    private GameObject LaunchEnemyShip() {
-        if (gameManager.TooManyEnemiesOnScreen()) {
-            return null;
+    private void LaunchEnemyShips() {
+        if (!gameManager.gameOver && !gameManager.TooManyEnemiesOnScreen()) {
+            gameManager.BumpEnemyCount();
+            CreateNewEnemy();
         }
+    }
 
-        gameManager.BumpEnemyCount();
+    private void SendPowerups() {
+        if (!gameManager.gameOver) {
+            CreateNewPowerup();
+        }
+    }
+
+    private GameObject CreateNewEnemy() {
         return Instantiate(enemyShip, transform.position, Quaternion.identity);
     }
 
-    private GameObject SendPowerups() {
+    private GameObject CreateNewPowerup() {
         GameObject randomPowerup = powerups[Random.Range(0, 3)];
         return Instantiate(randomPowerup, transform.position, Quaternion.identity);
     }
