@@ -78,7 +78,6 @@ public class GameManager : MonoBehaviour {
         mainGameMusic.PlayOneShot(fireworksClip);
     }
 
-
     private void StartGame() {
         mainGameMusic.pitch = 1;
         uiManager.ResetUI(totalEnemiesLeft);

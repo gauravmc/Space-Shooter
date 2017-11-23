@@ -13,10 +13,6 @@ public class UIManager : MonoBehaviour {
 
     private GameObject[] instructionObjects;
 
-    void Start() {
-        instructionObjects = GameObject.FindGameObjectsWithTag("Instruction");
-    }
-
     public void UpdatePlayerLives(int livesLeft) {
         playerLives.sprite = livesSprites[livesLeft];
     }
@@ -31,15 +27,6 @@ public class UIManager : MonoBehaviour {
 
     public void ResetUI(int score) {
         mainMenu.SetActive(false);
-        HideInstrcutions();
         ShowScore(score);
-    }
-
-    private void HideInstrcutions() {
-        foreach (GameObject instruction in instructionObjects) {
-            if (instruction.activeSelf) {
-                instruction.SetActive(false);
-            }
-        }
     }
 }
