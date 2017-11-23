@@ -16,9 +16,11 @@ public class Player : MonoBehaviour {
     private int livesLeft = 3;
     private UIManager uiManager;
     private List<GameObject> playerInjuries = new List<GameObject>();
+    private GameManager gameManager;
 
     // Use this for initialization
     void Start () {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         uiManager.UpdatePlayerLives(livesLeft);
 
@@ -66,7 +68,7 @@ public class Player : MonoBehaviour {
         }
     }
 
-    public void CauseDamage() {
+    public void Damage() {
         if (shiledIsActive) {
             DeactivateShield();
         } else {
@@ -126,13 +128,8 @@ public class Player : MonoBehaviour {
     }
 
     private void Die() {
+        gameManager.PlayerDied();
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-        NotifyGameManagerAboutDeath();
         Destroy(this.gameObject);
-    }
-
-    private void NotifyGameManagerAboutDeath() {
-        GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        gameManager.GameOverSequence();
     }
 }

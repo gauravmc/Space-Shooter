@@ -35,22 +35,18 @@ public class EnemyAI : MonoBehaviour {
             Player player = collision.GetComponent<Player>();
 
             if (player != null) {
-                player.CauseDamage();
+                player.Damage();
 
                 Die();
             }
         } else if (collision.tag == "Laser") {
-            if (gameManager != null) {
-                gameManager.UpdateScore();
-            }
-
             Destroy(collision.gameObject);
             Die();
         }
     }
 
     private void Die() {
-        gameManager.DecrementEnemyCount();
+        gameManager.EnemyKilled();
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         Destroy(this.gameObject);
     }

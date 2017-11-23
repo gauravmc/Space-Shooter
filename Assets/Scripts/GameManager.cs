@@ -3,54 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
+    public const int maximumEnemies = 20;
+
     [SerializeField] private GameObject playerShip;
     [SerializeField] private GameObject fireworks;
+    [SerializeField] private AudioClip applauseClip;
+    [SerializeField] private AudioClip fireworksClip;
 
     public bool gameOver = true;
+    public int totalEnemiesLeft;
+
     private UIManager uiManager;
     private SpawnManager spawnManager;
     private GameObject playerShipClone;
+    private AudioSource mainGameMusic;
 
-    private int totalEnemiesLeft = 2;
-    private int totalEnemiesInPlay = 0;
-
-    // Use this for initialization
-    void Start () {
+    void Start() {
         uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         spawnManager = GameObject.Find("Spawner").GetComponent<SpawnManager>();
-        uiManager.ShowScore(totalEnemiesLeft);
-    }
+        mainGameMusic = Camera.main.transform.GetComponent<AudioSource>();
 
-    public void GameOverSequence() {
-        uiManager.ShowMainMenu();
-        gameOver = true;
-    }
-
-    public void UpdateScore() {
-        totalEnemiesLeft -= 1;
-        uiManager.ShowScore(totalEnemiesLeft);
-
-        if (totalEnemiesLeft == 0) {
-            Invoke("GameWinSequence", 0.5f);
-        }
-    }
-
-    public void BumpEnemyCount() {
-        totalEnemiesInPlay += 1;
-    }
-
-    public void DecrementEnemyCount() {
-        totalEnemiesInPlay -= 1;
-    }
-
-    public bool TooManyEnemiesOnScreen() {
-        return totalEnemiesInPlay > 5;
-    }
-
-    private void GameWinSequence() {
-        Destroy(playerShipClone.gameObject);
-        gameOver = true;
-        Instantiate(fireworks, Vector3.zero, Quaternion.identity);
+        ResetScore();
     }
 
     private void Update() {
@@ -61,11 +34,69 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    public void PlayerDied() {
+        Invoke("GameOverSequence", 1.0f);
+    }
+
+    public void EnemyKilled() {
+        UpdateScore();
+        spawnManager.EnemyKilled();
+    }
+
+    private void UpdateScore() {
+        totalEnemiesLeft -= 1;
+        uiManager.ShowScore(totalEnemiesLeft);
+
+        if (totalEnemiesLeft == 0) {
+            Invoke("GameWinSequence", 1.0f);
+        }
+    }
+
+    private void GameOverSequence() {
+        ResetScore();
+        uiManager.ShowMainMenu();
+        gameOver = true;
+        mainGameMusic.pitch = 0.8f;
+        mainGameMusic.Play();
+    }
+
+    private void GameWinSequence() {
+        if (playerShipClone == null) {
+            return;
+        }
+
+        Destroy(playerShipClone.gameObject);
+        GameObject fireworksClone = Instantiate(fireworks, Vector3.zero, Quaternion.identity);
+        Invoke("PlayWinSound", 0.1f);
+
+        StartCoroutine(RestartGameMenu(fireworksClone));
+    }
+
+    private void PlayWinSound() {
+        mainGameMusic.Stop();
+        mainGameMusic.PlayOneShot(applauseClip);
+        mainGameMusic.PlayOneShot(fireworksClip);
+    }
+
+
     private void StartGame() {
+        mainGameMusic.pitch = 1;
         uiManager.ResetUI(totalEnemiesLeft);
         gameOver = false;
         SpawnPlayer();
         spawnManager.GameStarted();
+    }
+
+    private IEnumerator RestartGameMenu(GameObject fireworksClone) {
+        yield return new WaitForSeconds(10);
+
+        Destroy(fireworksClone.gameObject);
+        GameOverSequence();
+    }
+
+    private void ResetScore() {
+        totalEnemiesLeft = maximumEnemies;
+        uiManager.ShowScore(totalEnemiesLeft);
     }
 
     private void SpawnPlayer() {

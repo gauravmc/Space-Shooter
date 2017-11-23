@@ -33,7 +33,6 @@ public class UIManager : MonoBehaviour {
         mainMenu.SetActive(false);
         HideInstrcutions();
         ShowScore(score);
-        UpdatePlayerLives(allLivesCode);
     }
 
     private void HideInstrcutions() {
