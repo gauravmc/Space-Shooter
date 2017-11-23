@@ -151,6 +151,22 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114003146248076150, guid: 3adb81d626a265e4f8358427dea1291c,
+        type: 2}
+      propertyPath: applauseClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 76f35a3bc90db304195698ec37e9cf9b, type: 3}
+    - target: {fileID: 114003146248076150, guid: 3adb81d626a265e4f8358427dea1291c,
+        type: 2}
+      propertyPath: fireworksClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 99517e6ce5ea64347aa496a8bc3361ab, type: 3}
+    - target: {fileID: 114003146248076150, guid: 3adb81d626a265e4f8358427dea1291c,
+        type: 2}
+      propertyPath: fireworks
+      value: 
+      objectReference: {fileID: 1823528717111914, guid: 732caa6d65e374f489730e2082ec1775,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3adb81d626a265e4f8358427dea1291c, type: 2}
   m_IsPrefabParent: 0
@@ -268,12 +284,12 @@ Prefab:
     - target: {fileID: 224501347811737778, guid: 40a6140e11a52bb40a1a692e96488a37,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 485.5
+      value: 693.5
       objectReference: {fileID: 0}
     - target: {fileID: 224501347811737778, guid: 40a6140e11a52bb40a1a692e96488a37,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 273
+      value: 390
       objectReference: {fileID: 0}
     - target: {fileID: 224501347811737778, guid: 40a6140e11a52bb40a1a692e96488a37,
         type: 2}
