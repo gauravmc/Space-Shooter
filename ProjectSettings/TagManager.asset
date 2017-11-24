@@ -4,11 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Undefined
   - Laser
   - PlayerInjury
   - Welcome
   - Instruction
+  - EnemyShip
+  - Powerup
   layers:
   - Default
   - TransparentFX

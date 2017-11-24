@@ -3,12 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
-    public const int maximumEnemies = 20;
-
     [SerializeField] private GameObject playerShip;
-    [SerializeField] private GameObject fireworks;
-    [SerializeField] private AudioClip applauseClip;
-    [SerializeField] private AudioClip fireworksClip;
     [SerializeField] private GameObject fireworksObject;
 
     public bool gameOver = true;
@@ -70,15 +65,8 @@ public class GameManager : MonoBehaviour {
 
         Destroy(playerShipClone.gameObject);
         fireworksManager.ActivateFireworks();
-        Invoke("PlayWinSound", 0.1f);
 
         StartCoroutine(RestartGameMenu());
-    }
-
-    private void PlayWinSound() {
-        mainGameMusic.Stop();
-        mainGameMusic.PlayOneShot(applauseClip);
-        mainGameMusic.PlayOneShot(fireworksClip);
     }
 
     private void StartGame() {
@@ -97,7 +85,7 @@ public class GameManager : MonoBehaviour {
     }
 
     private void ResetScore() {
-        totalEnemiesLeft = maximumEnemies;
+        totalEnemiesLeft = spawnManager.maximumEnemies;
         uiManager.ShowScore(totalEnemiesLeft);
     }
 

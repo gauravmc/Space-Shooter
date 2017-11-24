@@ -52,9 +52,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerShip: {fileID: 1674699194017096, guid: 21fa7783213c876438c12631db617975, type: 2}
-  fireworks: {fileID: 1823528717111914, guid: 732caa6d65e374f489730e2082ec1775, type: 2}
-  applauseClip: {fileID: 8300000, guid: 76f35a3bc90db304195698ec37e9cf9b, type: 3}
-  fireworksClip: {fileID: 8300000, guid: 99517e6ce5ea64347aa496a8bc3361ab, type: 3}
   fireworksObject: {fileID: 0}
   gameOver: 1
   totalEnemiesLeft: 2

@@ -6,10 +6,10 @@ public class EnemyAI : MonoBehaviour {
     private const float minX = -7.0f;
     private const float maxX = 7.0f;
 
-    [SerializeField] private float speed = 6.0f;
     [SerializeField] private GameObject explosionPrefab;
 
     private GameManager gameManager;
+    public float speed;
 
     // Use this for initialization
     void Start() {
