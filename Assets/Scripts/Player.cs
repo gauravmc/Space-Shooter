@@ -29,6 +29,7 @@ public class Player : MonoBehaviour {
                 playerInjuries.Add(child.gameObject);
             }
         }
+        Shuffle(playerInjuries);
     }
 
     // Update is called once per frame
@@ -94,23 +95,9 @@ public class Player : MonoBehaviour {
                 Die();
             } else {
                 livesLeft -= 1;
-                ShowInjury();
+                playerInjuries[livesLeft].SetActive(true);
                 uiManager.UpdatePlayerLives(livesLeft);
             }
-        }
-    }
-
-    private void ShowInjury() {
-        if (livesLeft < 0) {
-            return; 
-        }
-
-        int randIndex = Random.Range(0, playerInjuries.Count);
-        GameObject injury = playerInjuries[randIndex];
-        if (!injury.activeSelf) {
-            injury.SetActive(true);
-        } else {
-            ShowInjury();
         }
     }
 
@@ -152,7 +139,20 @@ public class Player : MonoBehaviour {
     }
 
     private bool PlayingOnIPhone() {
-        return (Application.platform == RuntimePlatform.IPhonePlayer) ||
-            (Application.platform == RuntimePlatform.OSXEditor);
+        return false;
+        //return (Application.platform == RuntimePlatform.IPhonePlayer) ||
+            //(Application.platform == RuntimePlatform.OSXEditor);
+    }
+
+
+    private static void Shuffle(List<GameObject> objects) {
+        var count = objects.Count;
+        var last = count - 1;
+        for (var i = 0; i < last; ++i) {
+            var r = UnityEngine.Random.Range(i, count);
+            var tmp = objects[i];
+            objects[i] = objects[r];
+            objects[r] = tmp;
+        }
     }
 }
