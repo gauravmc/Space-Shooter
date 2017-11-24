@@ -139,9 +139,8 @@ public class Player : MonoBehaviour {
     }
 
     private bool PlayingOnIPhone() {
-        return false;
-        //return (Application.platform == RuntimePlatform.IPhonePlayer) ||
-            //(Application.platform == RuntimePlatform.OSXEditor);
+        return (Application.platform == RuntimePlatform.IPhonePlayer) ||
+            (Application.platform == RuntimePlatform.OSXEditor);
     }
 
 
