@@ -78,8 +78,8 @@ public class SpawnManager : MonoBehaviour {
         totalEnemiesInScene = 0;
 
         CancelInvoke();
-        InvokeRepeating("LaunchEnemyShips", 0.0f, 5.0f);
-        InvokeRepeating("SendPowerups", 5.0f, 10.0f);
+        InvokeRepeating("LaunchEnemyShips", 0.0f, 3.0f);
+        InvokeRepeating("SendPowerups", 5.0f, 8.0f);
         enemySpeed = initialEnemySpeed;
     }
 
